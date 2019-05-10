@@ -1,14 +1,10 @@
 import React from 'react'
 
-class AddFriendForm extends React.Component{
-    constructor(){
-        super()
-        this.state = {
-            item:{
-                name:'',
-                age:'',
-                email:''
-            }
+class UpdateForm extends React.Component{
+    constructor(props){
+        super(props)
+        this.state={
+            item:this.props.activeItem
         }
     }
 
@@ -23,18 +19,12 @@ class AddFriendForm extends React.Component{
 
     handleSubmit = (event) => {
         event.preventDefault();
-        this.props.addItemProp(this.state.item)
-        this.setState({
-            item:{
-                name:'',
-                age:'',
-                email:''
-            }
-        })
+        this.props.updateItem(this.state.item)
+        
     }
 
     render(){
-        return(
+        return (
             <form onSubmit={this.handleSubmit}>
                 <input 
                 placeholder='enter name' 
@@ -54,20 +44,9 @@ class AddFriendForm extends React.Component{
                 value={this.state.item.email}
                 name='email'
                 />
-                <button>Save</button>
+                <button>Update</button>
             </form>
         )
     }
 }
-
-// const AddFriendForm = () => {
-//     return (
-//         <form>
-//             <input placeholder='enter name' />
-//             <input placeholder='enter age' />
-//             <input placeholder='enter email' />
-//             <button>Save</button>
-//         </form>
-//     )
-// }
-export default AddFriendForm
+export default UpdateForm
